@@ -47,6 +47,13 @@ Configuração de rede doméstica com duas conexões de internet e infraestrutur
 - **Acesso:** Via NPM com SSL
 - **Status:** ✅ Operacional
 
+### WordPress Blog
+- **IP Local:** `192.168.0.155`
+- **Porta:** `80`
+- **Domínio:** `blog.primoia.dev`
+- **Acesso:** Via NPM com SSL
+- **Status:** ✅ Operacional
+
 ## Configuração DNS
 
 ### Domínio Principal
@@ -58,6 +65,7 @@ Configuração de rede doméstica com duas conexões de internet e infraestrutur
 | Subdomínio | IP Destino | Serviço | Status |
 |------------|------------|---------|--------|
 | `proxmox.primoia.dev` | `201.140.250.27` | Proxmox VE | ✅ Ativo |
+| `blog.primoia.dev` | `201.140.250.27` | WordPress Blog | ✅ Ativo |
 
 ## Fluxo de Tráfego
 
@@ -76,6 +84,13 @@ proxmox.primoia.dev:
   - Forward Port: 8006
   - SSL: Let's Encrypt
   - Websockets: Habilitado
+
+blog.primoia.dev:
+  - Scheme: http
+  - Forward Host: 192.168.0.155
+  - Forward Port: 80
+  - SSL: Let's Encrypt
+  - Headers: WordPress proxy headers
 ```
 
 ## Portas Testadas e Status
@@ -151,6 +166,8 @@ curl -I -k https://proxmox.primoia.dev
 ### Lições Aprendidas
 - Proxmox requer HTTPS na porta 8006
 - NPM precisa de websockets para consoles web
+- WordPress funciona bem com HTTP interno + SSL via NPM
+- Headers proxy são essenciais para WordPress
 - Teste sempre conectividade antes de configurar DNS
 - DMZ simplifica configuração comparado a port forwarding manual
 
