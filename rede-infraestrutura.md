@@ -62,6 +62,14 @@ Configuração de rede doméstica com duas conexões de internet e infraestrutur
 - **Status:** ✅ Operacional
 - **Imagens:** 4 repositórios ativos
 
+### Jupyter Lab
+- **IP Local:** `192.168.0.156`
+- **Porta:** `8888` (provável)
+- **Domínio:** `lab.primoia.dev`
+- **Acesso:** Via NPM com SSL
+- **Status:** ✅ Operacional
+- **Tipo:** Data Science/ML Environment
+
 ## Configuração DNS
 
 ### Domínio Principal
@@ -75,6 +83,7 @@ Configuração de rede doméstica com duas conexões de internet e infraestrutur
 | `proxmox.primoia.dev` | `201.140.250.27` | Proxmox VE | ✅ Ativo |
 | `blog.primoia.dev` | `201.140.250.27` | WordPress Blog | ✅ Ativo |
 | `registry.codenoob.dev` | `201.140.250.27` | Docker Registry | ✅ Ativo |
+| `lab.primoia.dev` | `201.140.250.27` | Jupyter Lab | ✅ Ativo |
 
 ## Fluxo de Tráfego
 
@@ -107,6 +116,14 @@ registry.codenoob.dev:
   - Forward Port: 5000
   - SSL: Let's Encrypt
   - Headers: Docker Registry headers
+
+lab.primoia.dev:
+  - Scheme: http
+  - Forward Host: 192.168.0.156
+  - Forward Port: 8888
+  - SSL: Let's Encrypt
+  - Websockets: Habilitado (para notebooks)
+  - Headers: Jupyter proxy headers
 ```
 
 ## Portas Testadas e Status
