@@ -178,9 +178,19 @@ docker pull registry.codenoob.dev/cvfuhr/inference
 - [ ] Servidor de arquivos (NAS)
 - [ ] Sistema de monitoramento
 - [x] Container registry (Docker Registry)
-- [ ] VPN Server
+- [ ] VPN Server (WireGuard/OpenVPN em container LXC)
 - [ ] Servidor de desenvolvimento
 - [ ] CI/CD Pipeline
+
+### Melhorias de Conectividade
+- [ ] VPN para acesso à intranet Domus via OpcaoNet
+  - Container LXC no Proxmox com OpenVPN/WireGuard
+  - Acesso via domínio: `vpn.primoia.dev`
+  - Roteamento para subnet 192.168.0.0/24
+  - Permite administração remota completa da infraestrutura
+  - Testes bidirecionais entre redes Domus/OpcaoNet
+- [ ] Load balancing entre conexões Domus/OpcaoNet
+- [ ] Failover automático de conexões
 
 ### Melhorias de Segurança
 - [ ] Configurar fail2ban
