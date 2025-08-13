@@ -54,6 +54,14 @@ Configuração de rede doméstica com duas conexões de internet e infraestrutur
 - **Acesso:** Via NPM com SSL
 - **Status:** ✅ Operacional
 
+### Docker Registry (LXC)
+- **IP Local:** `192.168.0.114`
+- **Porta:** `5000`
+- **Domínio:** `registry.codenoob.dev`
+- **Acesso:** Via NPM com SSL
+- **Status:** ✅ Operacional
+- **Imagens:** 4 repositórios ativos
+
 ## Configuração DNS
 
 ### Domínio Principal
@@ -66,6 +74,7 @@ Configuração de rede doméstica com duas conexões de internet e infraestrutur
 |------------|------------|---------|--------|
 | `proxmox.primoia.dev` | `201.140.250.27` | Proxmox VE | ✅ Ativo |
 | `blog.primoia.dev` | `201.140.250.27` | WordPress Blog | ✅ Ativo |
+| `registry.codenoob.dev` | `201.140.250.27` | Docker Registry | ✅ Ativo |
 
 ## Fluxo de Tráfego
 
@@ -91,6 +100,13 @@ blog.primoia.dev:
   - Forward Port: 80
   - SSL: Let's Encrypt
   - Headers: WordPress proxy headers
+
+registry.codenoob.dev:
+  - Scheme: http
+  - Forward Host: 192.168.0.114
+  - Forward Port: 5000
+  - SSL: Let's Encrypt
+  - Headers: Docker Registry headers
 ```
 
 ## Portas Testadas e Status
@@ -133,6 +149,10 @@ dig proxmox.primoia.dev +short
 # Testar conectividade HTTP/HTTPS
 curl -I http://proxmox.primoia.dev
 curl -I -k https://proxmox.primoia.dev
+
+# Testar Docker Registry
+curl -s https://registry.codenoob.dev/v2/_catalog
+docker pull registry.codenoob.dev/cvfuhr/inference
 ```
 
 ## Planos Futuros
@@ -140,9 +160,10 @@ curl -I -k https://proxmox.primoia.dev
 ### Serviços a Configurar
 - [ ] Servidor de arquivos (NAS)
 - [ ] Sistema de monitoramento
-- [ ] Container registry
+- [x] Container registry (Docker Registry)
 - [ ] VPN Server
 - [ ] Servidor de desenvolvimento
+- [ ] CI/CD Pipeline
 
 ### Melhorias de Segurança
 - [ ] Configurar fail2ban
