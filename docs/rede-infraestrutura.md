@@ -187,6 +187,15 @@ curl -s https://registry.codenoob.dev/v2/_catalog
 - [Documentação Nginx Proxy Manager](https://nginxproxymanager.com/)
 - [Documentação Docker Registry](https://docs.docker.com/registry/)
 
+## 13. Servidor de Trabalho
+
+Estação de trabalho principal para desenvolvimento.
+
+- **Modelo:** Servidor customizado
+- **Processador:** Dual Intel Xeon E5-2697A v4
+- **Memória RAM:** 128 GB
+- **Sistema Operacional:** Ubuntu
+
 ---
 
 **Última Atualização:** $(date '+%d/%m/%Y %H:%M')
